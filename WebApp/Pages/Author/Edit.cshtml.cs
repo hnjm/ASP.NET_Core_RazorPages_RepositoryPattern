@@ -35,7 +35,7 @@ namespace WebApp.Pages.Author
 
             this.Author = new AuthorModel { Id = data.Id, Name = data.Name, PhotoName = data.PhotoName };
            
-            this.PhotoPath = "/images/" + data.PhotoName;
+            this.PhotoPath = "/images/" + (string.IsNullOrEmpty(data.PhotoName) ? "noimage.jpg" : data.PhotoName);
         }
 
         public async Task<IActionResult> OnPostBackToIndex()
@@ -48,17 +48,24 @@ namespace WebApp.Pages.Author
             if (!ModelState.IsValid)
                 return Page();
 
-            try 
+            using (var trans = await this.unitOfWork.BeginTransactionAsync())
             {
-                var photo_name = processUploadFile();
-                await this.authorService.UpdateAuthor(new ABC.Models.Author { Id = id, Name = author.Name, PhotoName = photo_name });
-                await this.unitOfWork.CommitAsync();
-                return RedirectToPage("index");
-            }
-            catch (Exception)
-            {
-                this.unitOfWork.Rollback();
-                throw;
+                try
+                {
+                    var photo_name = processUploadFile();
+                    await this.authorService.UpdateAuthor(new ABC.Models.Author { Id = id, Name = author.Name, PhotoName = photo_name });
+                    await this.unitOfWork.CommitTransactionAsync(trans);
+                    return RedirectToPage("index");
+                }
+                catch (Exception)
+                {
+                    await this.unitOfWork.RollbackTransactionAsync(trans);
+                    throw;
+                }
+                finally
+                {
+                    await trans.DisposeAsync();
+                }
             }
          }
 

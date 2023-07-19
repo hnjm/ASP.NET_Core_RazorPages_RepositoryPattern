@@ -41,16 +41,23 @@ namespace WebApp.Pages.Book
                 return Page();
             }
 
-            try
+            using (var trans = await this.unitOfWork.BeginTransactionAsync())
             {
-                await this.bookService.AddBook(new ABC.Models.Book { Title = book.Title, Description = book.Description, AuthorId = book.AuthorId });
-                await this.unitOfWork.CommitAsync();
-                return RedirectToPage("Index");
-            }
-            catch (Exception)
-            {
-                this.unitOfWork.Rollback();
-                throw;
+                try
+                {
+                    await this.bookService.AddBook(new ABC.Models.Book { Title = book.Title, Description = book.Description, AuthorId = book.AuthorId });
+                    await this.unitOfWork.CommitTransactionAsync(trans);
+                    return RedirectToPage("Index");
+                }
+                catch (Exception)
+                {
+                    await this.unitOfWork.RollbackTransactionAsync(trans);
+                    throw;
+                }
+                finally
+                {
+                    await trans.DisposeAsync();
+                }
             }
         }
     }

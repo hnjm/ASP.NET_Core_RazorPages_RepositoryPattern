@@ -30,14 +30,21 @@ namespace WebApp.Pages.Author
 
         public async Task<IActionResult> OnPostDeleteAuthorHandler(int id)
         {
-            try
+            using (var trans = await this._unitOfWork.BeginTransactionAsync())
             {
-                await this._authorService.DeleteAuthor(id);
-                await this._unitOfWork.CommitAsync();                
-            }
-            catch (Exception)
-            {
-                this._unitOfWork.Rollback();                
+                try
+                {
+                    await this._authorService.DeleteAuthor(id);
+                    await this._unitOfWork.CommitTransactionAsync(trans);
+                }
+                catch (Exception)
+                {
+                    await this._unitOfWork.RollbackTransactionAsync(trans);
+                }
+                finally
+                {
+                    await trans.DisposeAsync();
+                }
             }
 
             return RedirectToPage("index");

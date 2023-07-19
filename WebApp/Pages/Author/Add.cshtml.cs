@@ -32,23 +32,35 @@ namespace WebApp.Pages.Author
                 return Page();
             }
 
-            try
+            using (var trans = await this.unitOfWork.BeginTransactionAsync())
             {
-                List<ABC.Models.Book> _books = new List<ABC.Models.Book>();
-
-                if (author.Books != null)
+                try
                 {
-                    _books.AddRange(author.Books.Select(x => new ABC.Models.Book { AuthorId = author.Id, Title = x.Title, Description = x.Description }));
-                }
+                    List<ABC.Models.Book> _books = new List<ABC.Models.Book>();
 
-                await this.authorService.AddAuthor(new ABC.Models.Author { Id = author.Id, Name = author.Name, Books = _books });
-                await this.unitOfWork.CommitAsync();
-                return RedirectToPage("Index");
-            }
-            catch(Exception)
-            {
-                this.unitOfWork.Rollback();
-                throw;
+                    if (author.Books != null)
+                    {
+                        _books.AddRange(author.Books.Select(x => new ABC.Models.Book { AuthorId = author.Id, Title = x.Title, Description = x.Description }));
+                    }
+
+                    await this.authorService.AddAuthor(new ABC.Models.Author { Id = author.Id, Name = author.Name, Books = _books });
+                   
+                    // await this.unitOfWork.CommitAsync();
+                    await this.unitOfWork.CommitTransactionAsync(trans);
+                    
+                    return RedirectToPage("Index");
+                }
+                catch (Exception)
+                {
+                    //this.unitOfWork.Rollback();
+                    await this.unitOfWork.RollbackTransactionAsync(trans);
+
+                    throw;
+                }
+                finally
+                {
+                   await trans.DisposeAsync();
+                }
             }
 
         }

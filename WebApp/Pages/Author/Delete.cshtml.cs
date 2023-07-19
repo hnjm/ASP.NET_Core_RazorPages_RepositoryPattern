@@ -19,16 +19,23 @@ namespace WebApp.Pages.Author
 
         public async Task<IActionResult> OnGet(int id)
         {
-            try
+            using (var trans = await this.unitOfWork.BeginTransactionAsync())
             {
-                await this.authorService.DeleteAuthor(id);
-                await this.unitOfWork.CommitAsync();
-                return RedirectToPage("index");
-            }
-            catch (Exception)
-            {
-                this.unitOfWork.Rollback();
-                return RedirectToPage("index");
+                try
+                {
+                    await this.authorService.DeleteAuthor(id);
+                    await this.unitOfWork.CommitTransactionAsync(trans);
+                    return RedirectToPage("index");
+                }
+                catch (Exception)
+                {
+                    await this.unitOfWork.RollbackTransactionAsync(trans);
+                    return RedirectToPage("index");
+                }
+                finally
+                {
+                    await trans.DisposeAsync();
+                }
             }
         }
     }

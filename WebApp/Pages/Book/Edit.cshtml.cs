@@ -47,16 +47,23 @@ namespace WebApp.Pages.Book
             if (!ModelState.IsValid)
                 return Page();
 
-            try
+            using (var transaction = await this.unitOfWork.BeginTransactionAsync())
             {
-                await this.bookService.UpdateBook(new ABC.Models.Book { Id = id, Title = book.Title, Description = book.Description, AuthorId = book.AuthorId });
-                await this.unitOfWork.CommitAsync();
-                return RedirectToPage("index");
-            }
-            catch (Exception)
-            {
-                this.unitOfWork.Rollback();
-                throw;
+                try
+                {
+                    await this.bookService.UpdateBook(new ABC.Models.Book { Id = id, Title = book.Title, Description = book.Description, AuthorId = book.AuthorId });
+                    await this.unitOfWork.CommitTransactionAsync(transaction);
+                    return RedirectToPage("index");
+                }
+                catch (Exception)
+                {
+                    await this.unitOfWork.RollbackTransactionAsync(transaction);
+                    throw;
+                }
+                finally
+                {
+                    await transaction.DisposeAsync();
+                }
             }
         }
     }
