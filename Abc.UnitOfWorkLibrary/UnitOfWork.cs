@@ -38,8 +38,11 @@ namespace Abc.UnitOfWorkLibrary
                     case EntityState.Unchanged:
                         break;
                     case EntityState.Deleted:
+                        item.State = EntityState.Unchanged;
                         break;
                     case EntityState.Modified:
+                        item.CurrentValues.SetValues(item.OriginalValues);
+                        item.State = EntityState.Unchanged;
                         break;
                     case EntityState.Added:
                         item.State = EntityState.Detached;
