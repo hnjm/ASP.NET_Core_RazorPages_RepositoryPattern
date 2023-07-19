@@ -1,0 +1,35 @@
+﻿@page
+@model WebApp.Pages.Book.IndexModel
+@{
+}
+
+@{
+	<a class="btn btn-primary" asp-page="add">Add Book</a>
+
+	<br />
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Title</th>
+				<th scope="col">Description</th>
+				<th scope="col">Author Name</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+
+		@foreach (var item in Model.Books)
+		{
+			<tr>
+				<td>@item.Title</td>
+				<td>@item.Description</td>
+				<td>@item.AuthorName</td>
+				<td>
+					<a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
+
+					<a class="btn btn-primary" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</table>
+}

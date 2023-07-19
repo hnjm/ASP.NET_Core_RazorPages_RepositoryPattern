@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{12E76B56-22D7-4B95-B3A1-B5E4BAD689BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABC.Models", "ABC.Models\ABC.Models.csproj", "{60C7B450-7584-4DE1-B346-EB9BC39D2402}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABC.BusinessBase", "ABC.BusinessBase\ABC.BusinessBase.csproj", "{99718DE1-57AF-4318-BB8E-8104F93C7BD4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABC.BooksLibrary", "ABC.BooksLibrary\ABC.BooksLibrary.csproj", "{5EBE288F-4A0A-40DC-90A3-4587C82BBCAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abc.AuthorLibrary", "Abc.AuthorLibrary\Abc.AuthorLibrary.csproj", "{5E0B6520-DCB4-4FCC-AD19-D025246C35DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abc.BusinessService", "Abc.BusinessService\Abc.BusinessService.csproj", "{E75EB65D-49B7-4DA5-800D-CB96FE8CD5BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abc.UnitOfWorkLibrary", "Abc.UnitOfWorkLibrary\Abc.UnitOfWorkLibrary.csproj", "{821EC6DD-4AB4-4B69-A31B-64CDCA0F2DE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12E76B56-22D7-4B95-B3A1-B5E4BAD689BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E76B56-22D7-4B95-B3A1-B5E4BAD689BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E76B56-22D7-4B95-B3A1-B5E4BAD689BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E76B56-22D7-4B95-B3A1-B5E4BAD689BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C7B450-7584-4DE1-B346-EB9BC39D2402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C7B450-7584-4DE1-B346-EB9BC39D2402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C7B450-7584-4DE1-B346-EB9BC39D2402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C7B450-7584-4DE1-B346-EB9BC39D2402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99718DE1-57AF-4318-BB8E-8104F93C7BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99718DE1-57AF-4318-BB8E-8104F93C7BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99718DE1-57AF-4318-BB8E-8104F93C7BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99718DE1-57AF-4318-BB8E-8104F93C7BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EBE288F-4A0A-40DC-90A3-4587C82BBCAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EBE288F-4A0A-40DC-90A3-4587C82BBCAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EBE288F-4A0A-40DC-90A3-4587C82BBCAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EBE288F-4A0A-40DC-90A3-4587C82BBCAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E0B6520-DCB4-4FCC-AD19-D025246C35DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E0B6520-DCB4-4FCC-AD19-D025246C35DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E0B6520-DCB4-4FCC-AD19-D025246C35DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E0B6520-DCB4-4FCC-AD19-D025246C35DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E75EB65D-49B7-4DA5-800D-CB96FE8CD5BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E75EB65D-49B7-4DA5-800D-CB96FE8CD5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E75EB65D-49B7-4DA5-800D-CB96FE8CD5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E75EB65D-49B7-4DA5-800D-CB96FE8CD5BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{821EC6DD-4AB4-4B69-A31B-64CDCA0F2DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{821EC6DD-4AB4-4B69-A31B-64CDCA0F2DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{821EC6DD-4AB4-4B69-A31B-64CDCA0F2DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{821EC6DD-4AB4-4B69-A31B-64CDCA0F2DE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB94E992-F7A0-4688-AD22-C83DD2AC5B7A}
+	EndGlobalSection
+EndGlobal

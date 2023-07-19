@@ -1,0 +1,85 @@
+﻿@page ""
+@model WebApp.Pages.Author.IndexModel
+@{
+}
+
+@{
+	<a class="btn btn-primary" asp-page="add">Add Author</a>
+
+	<form method="post" style="display:inline-block;margin-left:20px;">
+		<button class="btn btn-primary" asp-page-handler="NotifyAuthorHandler">Notify</button>
+	</form>
+	<form method="post" style="display:inline-block;margin-left:20px;">
+		<button class="btn btn-primary" asp-page-handler="DisableNotify">Disable Notify</button>
+	</form>
+
+	<br />
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Notification Status</th>
+				<th scope="col">Books List</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		@{
+			@foreach (var item in Model.Authors)
+			{
+
+				<tr class="clickable" data-toggle="collapse" id="row1" data-target=".row1">
+					<td style="width:250px;">@item.Name</td>
+					<td style="width:200px;">
+						@{
+							if (Model.IsNotified)
+							{
+								<div class="text-primary">Enabled</div>
+							}
+							else
+							{
+								<div class="text-secondary">Disabled</div>
+							}
+						}
+					</td>
+					<td style="width:400px;">
+						<div>
+							@{
+								var name = "#coll" + item.Id;
+								var nameId = "coll" + item.Id;
+							}
+							<div>
+								<button class="btn btn-success float-sm-left" type="button" data-bs-toggle="collapse" data-bs-target="@name" aria-expanded="false" aria-controls="collapseExample">
+									Show
+								</button>
+							</div>
+							<div class="collapse" id="@nameId">
+								<table class="table" style="width:350px;">
+									<thead>
+										<tr>
+											<th scope="col">Title</th>
+											<th scope="col">Description</th>
+										</tr>
+									</thead>
+									@foreach (var book in item.Books)
+									{
+										<tr>
+											<td>@book.Title</td>
+											<td>@book.Description</td>
+										</tr>
+									}
+								</table>
+							</div>
+						</div>
+					</td>
+					<td style="width:150px;">
+						<a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
+						<form method="post" style="display:inline-block">
+							<button class="btn btn-primary" asp-page-handler="DeleteAuthorHandler" asp-route-id="@item.Id">Delete</button>
+						</form>
+					</td>
+				</tr>
+
+			}
+		}
+	</table>
+}

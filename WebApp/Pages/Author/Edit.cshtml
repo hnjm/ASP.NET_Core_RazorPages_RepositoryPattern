@@ -1,0 +1,87 @@
+﻿@page
+@model WebApp.Pages.Author.EditModel
+@{
+}
+
+<reference path="../lib/jquery/dist/jquery.min.js" />
+<form method="post">
+	<div class="row">
+		<div class="col-sm-10"></div>
+		<div class="col-sm-2">
+			<button class="btn btn-primary btn-sm" asp-page-handler="BackToIndex">Back</button>
+		</div>
+	</div>
+</form>
+<br/>
+<br/>
+<form method="post" enctype="multipart/form-data">
+	<fieldset>
+		<div class="row">
+			<label class="col-sm-2" asp-for="Author.Id">Author Id :</label>
+			<input class="col-sm-4" asp-for="@Model.Author.Id" disabled />
+		</div>
+		<br />
+		<div class="row">
+			<label class="col-sm-2" asp-for="Author.Name">Author Name: </label>
+			<input class="col-sm-4" asp-for="Author.Name" />
+		</div>
+		<div class="row">
+			<input asp-for="Author.PhotoName" hidden />
+			<input asp-for="@Model.PhotoPath" hidden />
+		</div>
+		<br />
+		<div class="row">
+			<label asp-for="@Model.PhotoPath" class="col-sm-2 align-content-center align-content-sm-center align-middle">Photo :</label>
+			<img class="col-sm-4" src="@Model.PhotoPath" asp-append-version="true" style="height:130px;width:150px;" />
+		</div>
+		<div class="row"><br/></div>
+		<div class="row">
+			<label class="col-form-label col-sm-2">Change Photo</label>
+			<div class="col-sm-4">
+				<div class="">
+					<input id="choose-file" asp-for="Photo" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<span id="previewbtn" class="btn btn-outline-success">Preview Photo</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div id="img-preview"  class="col-sm-2"></div>
+		</div>
+		<br />
+		<div>
+			<button class="btn btn-primary" asp-route-id="@Model.Author.Id" type="submit">Update</button>			
+		</div>
+	</fieldset>
+</form>
+<br/>
+<br/>
+
+
+@section scripts {
+
+	<script	type="text/javascript">
+	$(function(){
+		$('#previewbtn').click(function(){				
+			getImageData($(this));								
+		});
+	});
+	
+	function getImageData() {
+		const chooseFile = document.getElementById("choose-file");
+
+		const files = chooseFile.files[0];
+		if (files) {
+			const fileReader = new FileReader();
+			fileReader.readAsDataURL(files);
+			fileReader.addEventListener("load", function () {
+					$('#img-preview').css('display',"block");
+					$('#img-preview').html('<br /><img style="height:150px;width:150px;" src="' + this.result + '" />');
+			});
+		}
+	}
+	</script>
+
+}

@@ -1,0 +1,27 @@
+﻿@page
+@model WebApp.Pages.Book.AddModel
+@{
+}
+
+<form method="post">
+	<div class="mb-3">
+		<label asp-for="Book.Title" class="form-label">@Model.Book.Title</label>
+		<input asp-for="Book.Title" class="form-control" />
+		<span asp-validation-for="Book.Title"></span>
+	</div>
+	<div class="mb-3">
+		<label asp-for="Book.Description" class="form-label">@Model.Book.Description</label>
+		<input asp-for="Book.Description" class="form-control" />
+		<span asp-validation-for="Book.Description"></span>
+	</div>
+	<div class="mb-3">
+		<label asp-for="Book.AuthorName" class="form-label">@Model.Book.AuthorName</label>
+		<select asp-for="Book.AuthorId" asp-items="@Model.Authors" class="form-control">			
+		</select>
+	</div>
+	<br />
+	<div class="mb-3">
+		<button class="btn btn-primary" type="submit">Add</button>
+		<button class="btn btn-primary" asp-page="index">Back</button>
+	</div>
+</form>
