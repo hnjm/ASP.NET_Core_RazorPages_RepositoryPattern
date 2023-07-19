@@ -4,7 +4,7 @@ This Repo consists of sample ASP.NET Core Razor page Development including sampl
 Repo consists of Following features
 1. Global Exception Handler
 2. Generic Repository Pattern
-3. UnitOfWork Pattern
+3. UnitOfWork Pattern with Transaction enabled
 4. CRUD Operations for an Entity(CREATE, UPDATE, DELETE, GET)
 5. FileUpload
 6. Attributes (asp-for, asp-page, asp-route, asp-items, asp-page-handler)
