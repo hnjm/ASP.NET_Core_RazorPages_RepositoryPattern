@@ -1,11 +1,15 @@
 using Abc.BusinessService;
 using Abc.UnitOfWorkLibrary;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Server.HttpSys;
 using WebApp.Models;
 
 namespace WebApp.Pages.Author
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles ="User")]
     public class IndexModel : PageModel
     {
         private readonly IAuthorService _authorService;

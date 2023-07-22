@@ -1,13 +1,17 @@
 using Abc.BusinessService;
 using Abc.UnitOfWorkLibrary;
 using ABC.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using WebApp.Models;
 
 namespace WebApp.Pages.Book
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User,Admin")]
     public class AddModel : PageModel
     {
         private readonly IUnitOfWork unitOfWork;

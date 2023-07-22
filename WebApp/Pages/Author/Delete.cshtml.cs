@@ -1,11 +1,15 @@
 using Abc.AuthorLibrary;
 using Abc.BusinessService;
 using Abc.UnitOfWorkLibrary;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
 namespace WebApp.Pages.Author
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly IAuthorService authorService;

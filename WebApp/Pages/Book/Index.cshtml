@@ -26,8 +26,10 @@
 				<td>@item.AuthorName</td>
 				<td>
 					<a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
-
-					<a class="btn btn-primary" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
+					@if (User.IsInRole("Admin"))
+					{						
+					 <a class="btn btn-primary" asp-page="Delete" asp-route-id="@item.Id">Delete</a>						
+					}
 				</td>
 			</tr>
 		}

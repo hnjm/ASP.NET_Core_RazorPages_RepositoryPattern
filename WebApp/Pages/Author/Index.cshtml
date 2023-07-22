@@ -73,9 +73,12 @@
 					</td>
 					<td style="width:150px;">
 						<a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
-						<form method="post" style="display:inline-block">
-							<button class="btn btn-primary" asp-page-handler="DeleteAuthorHandler" asp-route-id="@item.Id">Delete</button>
-						</form>
+						@if(User.IsInRole("Admin"))
+						{
+							<form method="post" style="display:inline-block">
+								<button class="btn btn-primary" asp-page-handler="DeleteAuthorHandler" asp-route-id="@item.Id">Delete</button>
+							</form>
+						}
 					</td>
 				</tr>
 

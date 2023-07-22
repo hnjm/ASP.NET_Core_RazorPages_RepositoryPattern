@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABC.BooksLibrary", "ABC.Boo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abc.AuthorLibrary", "Abc.AuthorLibrary\Abc.AuthorLibrary.csproj", "{5E0B6520-DCB4-4FCC-AD19-D025246C35DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abc.BusinessService", "Abc.BusinessService\Abc.BusinessService.csproj", "{E75EB65D-49B7-4DA5-800D-CB96FE8CD5BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abc.BusinessService", "Abc.BusinessService\Abc.BusinessService.csproj", "{E75EB65D-49B7-4DA5-800D-CB96FE8CD5BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abc.UnitOfWorkLibrary", "Abc.UnitOfWorkLibrary\Abc.UnitOfWorkLibrary.csproj", "{821EC6DD-4AB4-4B69-A31B-64CDCA0F2DE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abc.UnitOfWorkLibrary", "Abc.UnitOfWorkLibrary\Abc.UnitOfWorkLibrary.csproj", "{821EC6DD-4AB4-4B69-A31B-64CDCA0F2DE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
